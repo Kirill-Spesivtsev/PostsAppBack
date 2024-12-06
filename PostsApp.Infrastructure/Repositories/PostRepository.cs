@@ -13,6 +13,33 @@ public class PostRepository : IPostRepository
 		_connectionString = connectionString;
 	}
 
+	public async Task<List<Post>> GetAllAsync(CancellationToken cancellationToken = default)
+	{
+		var posts = new List<Post>();
+
+		using var connection = new SqliteConnection(_connectionString);
+		await connection.OpenAsync(cancellationToken);
+
+		var command = new SqliteCommand("SELECT * FROM Posts", connection);
+
+		using var reader = await command.ExecuteReaderAsync(cancellationToken);
+		while (await reader.ReadAsync(cancellationToken))
+		{
+			posts.Add(new Post
+			{
+				Id = reader["Id"].ToString()!,
+				Title = reader["Title"].ToString()!,
+				ArticleLink = reader["ArticleLink"] as string,
+				PublicationDate = reader["PublicationDate"] as DateTime?,
+				Creator = reader["Creator"] as string,
+				Content = reader["Content"].ToString()!,
+				MediaUrl = reader["MediaUrl"] as string
+			});
+		}
+			
+		return posts;
+	}
+
 	public async Task BulkAddAsync(ICollection<Post> posts, CancellationToken cancellationToken = default)
 	{
 		using var connection = new SqliteConnection(_connectionString);
@@ -43,6 +70,7 @@ public class PostRepository : IPostRepository
 			}
 
 			transaction.Commit();
+
 		}
 	}
 }

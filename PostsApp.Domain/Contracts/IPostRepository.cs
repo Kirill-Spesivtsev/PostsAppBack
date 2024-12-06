@@ -6,5 +6,7 @@ namespace PostsApp.Domain.Abstractions;
 
 public interface IPostRepository
 {
+	public Task<List<Post>> GetAllAsync(CancellationToken cancellationToken = default);
+
 	public Task BulkAddAsync(ICollection<Post> posts, CancellationToken cancellationToken = default);
 }
