@@ -27,5 +27,18 @@ namespace PostsApp.API.Controllers
 
 			return Ok(allPosts);
 		}
+
+		[HttpGet("{id}")]
+		[Produces(MediaTypeNames.Application.Json)]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Post))]
+		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		public async Task<IActionResult> GetPostById(string id, CancellationToken cancellationToken)
+		{
+			var query = new GetPostByIdQuery(id);
+
+			var post = await _mediator.Send(query, cancellationToken);
+
+			return Ok(post);
+		}
 	}
 }

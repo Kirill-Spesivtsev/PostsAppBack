@@ -40,6 +40,32 @@ public class PostRepository : IPostRepository
 		return posts;
 	}
 
+	public async Task<Post?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
+	{
+		using var connection = new SqliteConnection(_connectionString);
+		await connection.OpenAsync(cancellationToken);
+
+		var command = new SqliteCommand("SELECT * FROM Posts WHERE Id = @Id", connection);
+		command.Parameters.AddWithValue("@Id", id);
+
+		using var reader = await command.ExecuteReaderAsync(cancellationToken);
+		if (await reader.ReadAsync(cancellationToken))
+		{
+			return new Post
+			{
+				Id = reader["Id"].ToString()!,
+				Title = reader["Title"].ToString()!,
+				ArticleLink = reader["ArticleLink"] as string,
+				PublicationDate = reader["PublicationDate"] as DateTime?,
+				Creator = reader["Creator"] as string,
+				Content = reader["Content"].ToString()!,
+				MediaUrl = reader["MediaUrl"] as string
+			};
+		}
+			
+		return null;
+	}
+
 	public async Task BulkAddAsync(ICollection<Post> posts, CancellationToken cancellationToken = default)
 	{
 		using var connection = new SqliteConnection(_connectionString);
