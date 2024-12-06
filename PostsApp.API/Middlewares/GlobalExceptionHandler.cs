@@ -38,7 +38,7 @@ public class GlobalExceptionHandler
 		}
 		catch (Exception ex)
 		{
-			_logger.LogError(ex, "Unexpected exception wa thrown");
+			_logger.LogError(ex, "Exception was thrown");
 
 			var problemDetails = new ProblemDetails
 			{

@@ -1,6 +1,0 @@
-@PostsApp.API_HostAddress = http://localhost:5223
-
-GET {{PostsApp.API_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

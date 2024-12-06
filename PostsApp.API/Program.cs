@@ -10,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddProblemDetails();
+builder.Services.AddApplicationServices(builder);
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilogConfiguration();
