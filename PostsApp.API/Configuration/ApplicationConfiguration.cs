@@ -1,4 +1,5 @@
-﻿using PostsApp.Application;
+﻿using MediatR;
+using PostsApp.Application;
 using PostsApp.Domain.Abstractions;
 using System.Reflection;
 using System.Reflection.Metadata;
@@ -13,6 +14,8 @@ public static class ApplicationConfiguration
 
 		services.AddMediatR(configuration =>
 			configuration.RegisterServicesFromAssemblyContaining<ExternalApiService>());
+
+		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehaviour<,>));
 
 		builder.Services.AddHttpClient<ExternalApiService>();
 
