@@ -40,5 +40,19 @@ namespace PostsApp.API.Controllers
 
 			return Ok(post);
 		}
+
+		[HttpPost]
+		[Produces(MediaTypeNames.Application.Json)]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Post))]
+		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Post))]
+		public async Task<IActionResult> AddPost(Post post, CancellationToken cancellationToken)
+		{
+			var query = new AddNewPostCommand(post);
+
+			var createdPost = await _mediator.Send(query, cancellationToken);
+
+			return CreatedAtAction(nameof(AddPost), new { post.Id }, createdPost);
+		}
+
 	}
 }
