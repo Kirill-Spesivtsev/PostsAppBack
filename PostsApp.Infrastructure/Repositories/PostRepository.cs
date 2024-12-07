@@ -106,7 +106,7 @@ public class PostRepository : IPostRepository
 
 		var checkCommand = new SqliteCommand("SELECT COUNT(*) FROM Posts", connection);
 
-		var count = (long) await checkCommand.ExecuteScalarAsync(cancellationToken);
+		var count = (long) (await checkCommand.ExecuteScalarAsync(cancellationToken))!;
 		if (count == 0)
 		{
 			using var transaction = connection.BeginTransaction();
