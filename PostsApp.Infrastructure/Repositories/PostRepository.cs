@@ -4,6 +4,9 @@ using PostsApp.Domain.Abstractions;
 using PostsApp.Domain.Entities;
 using System.Data;
 
+/// <summary>
+/// Repository for posts.
+/// </summary>
 public class PostRepository : IPostRepository
 {
 	private readonly string _connectionString;
@@ -13,6 +16,11 @@ public class PostRepository : IPostRepository
 		_connectionString = connectionString;
 	}
 
+	/// <summary>
+	/// Gets all posts from database.
+	/// </summary>
+	/// <param name="cancellationToken">Cancellation token.</param>
+	/// <returns>List of all posts.</returns>
 	public async Task<List<Post>> GetAllAsync(CancellationToken cancellationToken = default)
 	{
 		var posts = new List<Post>();
@@ -40,6 +48,12 @@ public class PostRepository : IPostRepository
 		return posts;
 	}
 
+	/// <summary>
+	/// Gets post by provided ID from the database.
+	/// </summary>
+	/// <param name="id">ID of post.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
+	/// <returns>Post with its data.</returns>
 	public async Task<Post?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
 	{
 		using var connection = new SqliteConnection(_connectionString);
@@ -66,6 +80,11 @@ public class PostRepository : IPostRepository
 		return null;
 	}
 
+	/// <summary>
+	/// Adds new post to database.
+	/// </summary>
+	/// <param name="post">Post model data.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
 	public async Task AddAsync(Post post, CancellationToken cancellationToken = default)
 	{
 		using var connection = new SqliteConnection(_connectionString);
@@ -87,6 +106,11 @@ public class PostRepository : IPostRepository
 		
 	}
 
+	/// <summary>
+	/// Removes post from database.
+	/// </summary>
+	/// <param name="id">ID of post.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
 	public async Task RemoveAsync(string id, CancellationToken cancellationToken = default)
 	{
 		using var connection = new SqliteConnection(_connectionString);
@@ -96,9 +120,13 @@ public class PostRepository : IPostRepository
 		command.Parameters.AddWithValue("@Id", id);
 
 		await command.ExecuteNonQueryAsync(cancellationToken);
-		
 	}
 
+	/// <summary>
+	/// Bulk inserts posts collection into the database.
+	/// </summary>
+	/// <param name="posts">Posts collection.</param>
+	/// <param name="cancellationToken">Cancellation token.</param>
 	public async Task BulkAddAsync(ICollection<Post> posts, CancellationToken cancellationToken = default)
 	{
 		using var connection = new SqliteConnection(_connectionString);

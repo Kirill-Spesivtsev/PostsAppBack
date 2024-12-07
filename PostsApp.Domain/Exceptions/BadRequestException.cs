@@ -2,6 +2,9 @@
 
 namespace PostsApp.Domain.Extensions;
 
+/// <summary>
+/// Exception for Bad Request (401) HTTP response.
+/// </summary>
 public class BadRequestException : HttpResponseException
 {
     public BadRequestException(string message) : base(message)

@@ -2,6 +2,9 @@
 
 namespace PostsApp.Domain.Extensions;
 
+/// <summary>
+/// Exception for Not Found (404) HTTP response.
+/// </summary>
 public class NotFoundException : HttpResponseException
 {
     public NotFoundException(string message) : base(message)

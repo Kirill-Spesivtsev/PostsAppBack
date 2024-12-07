@@ -3,6 +3,9 @@ using PostsApp.Domain.Entities;
 
 namespace PostsApp.Application;
 
+/// <summary>
+/// Mapping profile for Automapper.
+/// </summary>
 public sealed class MappingProfile : Profile
 {
 	public MappingProfile()

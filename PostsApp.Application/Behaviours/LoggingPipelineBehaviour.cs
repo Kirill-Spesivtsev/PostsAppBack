@@ -11,6 +11,11 @@ using System.Threading.Tasks;
 
 namespace PostsApp.Application;
 
+/// <summary>
+/// Pipeline behaviour for logging each HTTP request.
+/// </summary>
+/// <typeparam name="TRequest">Request type.</typeparam>
+/// <typeparam name="TResponse">Response type.</typeparam>
 public class LoggingPipelineBehaviour<TRequest, TResponse>(ILogger<LoggingPipelineBehaviour<TRequest, TResponse>> logger)
 		: IPipelineBehavior<TRequest, TResponse>
 			where TRequest : IRequest<TResponse>

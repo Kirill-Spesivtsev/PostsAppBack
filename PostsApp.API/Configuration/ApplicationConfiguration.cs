@@ -10,6 +10,9 @@ namespace PostsApp.API.Configuration;
 
 public static class ApplicationConfiguration
 {
+	/// <summary>
+	/// Extenstion method for application services configuration.
+	/// </summary>
 	public static IServiceCollection AddApplicationServices(this IServiceCollection services, WebApplicationBuilder builder)
 	{
 		builder.Services.AddProblemDetails();

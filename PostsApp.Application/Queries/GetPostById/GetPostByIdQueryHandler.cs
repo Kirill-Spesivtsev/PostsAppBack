@@ -5,6 +5,9 @@ using PostsApp.Domain.Abstractions;
 using PostsApp.Domain.Entities;
 using PostsApp.Domain.Extensions;
 
+/// <summary>
+/// Mediatr query handler to get post by provided ID.
+/// </summary>
 internal class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, Post>
 {
 	private readonly IPostRepository _postRepository;

@@ -10,10 +10,8 @@ using PostsApp.Domain.Entities;
 namespace PostsApp.API.Controllers
 {
 	/// <summary>
-	/// Controller for managing posts
+	/// ontroller for managing posts.
 	/// </summary>
-	/// <param name="mediator"></param>
-	/// <param name="logger"></param>
 	[ApiController]
 	[Route("api/posts")]
 	public class PostsController(IMediator mediator, ILogger<PostsController> logger) : ControllerBase

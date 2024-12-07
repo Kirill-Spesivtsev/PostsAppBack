@@ -3,6 +3,9 @@
 
 namespace PostsApp.Domain.Extensions;
 
+/// <summary>
+/// Exception for Conflict (409) HTTP response.
+/// </summary>
 public class ConflictException : HttpResponseException
 {
     public ConflictException(string message) : base(message)

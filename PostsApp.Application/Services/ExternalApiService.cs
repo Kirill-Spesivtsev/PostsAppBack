@@ -11,6 +11,10 @@ public class ExternalApiService(IConfiguration configuration, HttpClient httpCli
 	private readonly IConfiguration _configuration = configuration;
 	private readonly HttpClient _httpClient = httpClient;
 
+	/// <summary>
+	/// Fetches list of posts from the external API URL, provided in configuration.
+	/// </summary>
+	/// <returns>Fetched data in the form of posts list.</returns>
 	public async Task<List<Post>> FetchExternalData()
 	{
 		try

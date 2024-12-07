@@ -9,7 +9,10 @@ public static class LoggerConfiguration
     private const string LogTemplate =
         "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {SourceContext}: {Message:lj}{NewLine}{Exception}";
 
-    public static void AddSerilogConfiguration(this ILoggingBuilder logging)
+	/// <summary>
+	/// Extenstion method for logger configuration.
+	/// </summary>
+	public static void AddSerilogConfiguration(this ILoggingBuilder logging)
     {
 		var configuration = new Serilog.LoggerConfiguration()
 			.MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)

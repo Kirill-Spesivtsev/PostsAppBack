@@ -8,6 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace PostsApp.Application;
 
+/// <summary>
+/// Pipeline behaviour to validate HTTP request parameters according to defined FluentValidation rules.
+/// </summary>
+/// <typeparam name="TRequest">Request type.</typeparam>
+/// <typeparam name="TResponse">Response type.</typeparam>
 public class ValidationPipelineBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
 	where TRequest : IRequest<TResponse>
 {

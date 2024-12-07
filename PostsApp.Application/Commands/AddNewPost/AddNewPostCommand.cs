@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace PostsApp.Application;
 
+/// <summary>
+/// Mediatr command to add a new post.
+/// </summary>
 public record AddNewPostCommand: IRequest<Post>
 {
 	public string Id { get; set; } = null!;

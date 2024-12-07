@@ -1,5 +1,8 @@
 ﻿namespace PostsApp.Domain.Extensions;
 
+/// <summary>
+/// General abstract HTTP response exception.
+/// </summary>
 public abstract class HttpResponseException : Exception 
 { 
     protected HttpResponseException(string message) : base (message){ }

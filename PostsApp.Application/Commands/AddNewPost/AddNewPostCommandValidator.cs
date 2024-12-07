@@ -2,6 +2,10 @@
 using PostsApp.Application;
 using PostsApp.Domain.Entities;
 
+
+/// <summary>
+/// Fluent validator for Post entity.
+/// </summary>
 public class PostValidator : AbstractValidator<AddNewPostCommand>
 {
 	public PostValidator()

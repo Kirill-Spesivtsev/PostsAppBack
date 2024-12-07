@@ -5,6 +5,9 @@ using PostsApp.Application;
 using PostsApp.Domain.Abstractions;
 using PostsApp.Domain.Entities;
 
+/// <summary>
+/// Mediatr command handler to add a new post.
+/// </summary>
 internal class AddNewPostCommandHandler : IRequestHandler<AddNewPostCommand, Post>
 {
 	private readonly IPostRepository _postRepository;

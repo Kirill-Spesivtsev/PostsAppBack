@@ -5,6 +5,9 @@ using System.Net;
 
 namespace PostsApp.API.Middlewares;
 
+/// <summary>
+/// Exception handler middleware for handling and logging all application exceptions.
+/// </summary>
 public class GlobalExceptionHandler
 {
 	private readonly RequestDelegate _next;

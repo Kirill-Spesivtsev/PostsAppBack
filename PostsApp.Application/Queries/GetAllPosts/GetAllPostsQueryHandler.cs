@@ -4,6 +4,9 @@ using PostsApp.Application;
 using PostsApp.Domain.Abstractions;
 using PostsApp.Domain.Entities;
 
+/// <summary>
+/// Mediatr query handler to get all posts.
+/// </summary>
 internal class GetAllPostsQueryHandler : IRequestHandler<GetAllPostsQuery, List<Post>>
 {
 	private readonly IPostRepository _postRepository;
