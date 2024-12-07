@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using PostsApp.Application;
 using PostsApp.Domain.Abstractions;
 using System.Reflection;
@@ -16,14 +17,18 @@ public static class ApplicationConfiguration
 			configuration.RegisterServicesFromAssemblyContaining<ExternalApiService>());
 
 		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingPipelineBehaviour<,>));
+		services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
+
+		services.AddValidatorsFromAssemblyContaining<ExternalApiService>( includeInternalTypes: true);
 
 		builder.Services.AddHttpClient<ExternalApiService>();
 
-		builder.Services.AddScoped<IPostRepository, PostRepository>(sp =>
-		{
-			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-			return new PostRepository(connectionString!);
-		});
+		services.AddAutoMapper(typeof(ExternalApiService).Assembly);
+
+		builder.Services.AddScoped<IPostRepository, PostRepository>(sp => 
+			new PostRepository(builder.Configuration.GetConnectionString("DefaultConnection")!)
+		);
+
 		builder.Services.AddScoped<IExternalApiService, ExternalApiService>();
 
 		return services;

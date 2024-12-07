@@ -43,15 +43,13 @@ namespace PostsApp.API.Controllers
 
 		[HttpPost]
 		[Produces(MediaTypeNames.Application.Json)]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Post))]
 		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(Post))]
-		public async Task<IActionResult> AddPost(Post post, CancellationToken cancellationToken)
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		public async Task<IActionResult> AddPost(AddNewPostCommand request, CancellationToken cancellationToken)
 		{
-			var query = new AddNewPostCommand(post);
+			var createdPost = await _mediator.Send(request, cancellationToken);
 
-			var createdPost = await _mediator.Send(query, cancellationToken);
-
-			return CreatedAtAction(nameof(AddPost), new { post.Id }, createdPost);
+			return CreatedAtAction(nameof(AddPost), new { createdPost.Id }, createdPost);
 		}
 
 	}

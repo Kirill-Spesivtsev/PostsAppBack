@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using PostsApp.Domain.Extensions;
+using System.Net;
 
 namespace PostsApp.API.Middlewares;
 
@@ -19,6 +21,30 @@ public class GlobalExceptionHandler
 		try
 		{
 			await _next(context);
+		}
+		catch (ValidationException ex)
+		{
+			var errorsList = ex.Errors
+				.GroupBy(f => f.PropertyName)
+				.ToDictionary(
+					g => g.Key,
+					g => g.Select(f => f.ErrorMessage).ToArray());
+
+
+			var problemDetails = new ProblemDetails
+			{
+				Title = "Validation Failed",
+				Detail = "One or more validation errors occurred.",
+				Status = StatusCodes.Status400BadRequest,
+				Extensions =
+				{
+					["errors"] = errorsList
+				}
+			};
+
+			context.Response.StatusCode = StatusCodes.Status400BadRequest;
+			context.Response.ContentType = "application/json";
+			await context.Response.WriteAsJsonAsync(problemDetails);
 		}
 		catch (HttpResponseException ex)
 		{

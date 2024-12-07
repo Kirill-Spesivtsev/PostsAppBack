@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsApp.API", "PostsApp.API\PostsApp.API.csproj", "{30F31ECF-C612-44A0-A8BF-B78F5D4666DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsApp.API", "PostsApp.API\PostsApp.API.csproj", "{30F31ECF-C612-44A0-A8BF-B78F5D4666DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsApp.Application", "PostsApp.Application\PostsApp.Application.csproj", "{862BF41C-7A0A-4562-B3BC-AEB808EE9D66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsApp.Application", "PostsApp.Application\PostsApp.Application.csproj", "{862BF41C-7A0A-4562-B3BC-AEB808EE9D66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsApp.Domain", "PostsApp.Domain\PostsApp.Domain.csproj", "{21F22F21-2A65-49C1-89F6-09438DE2F928}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsApp.Domain", "PostsApp.Domain\PostsApp.Domain.csproj", "{21F22F21-2A65-49C1-89F6-09438DE2F928}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsApp.Infrastructure", "PostsApp.Infrastructure\PostsApp.Infrastructure.csproj", "{AB5306D5-0174-4AC9-82AA-894512FAF399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsApp.Infrastructure", "PostsApp.Infrastructure\PostsApp.Infrastructure.csproj", "{AB5306D5-0174-4AC9-82AA-894512FAF399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
