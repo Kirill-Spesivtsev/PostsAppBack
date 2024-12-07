@@ -25,7 +25,12 @@ public static class ApplicationConfiguration
 
 		services.AddValidatorsFromAssemblyContaining<ExternalApiService>( includeInternalTypes: true);
 
-		builder.Services.AddHttpClient<ExternalApiService>();
+		builder.Services.AddHttpClient();
+
+		builder.Services.AddMemoryCache(options =>
+		{
+			options.SizeLimit = 300;
+		});
 
 		services.AddAutoMapper(typeof(ExternalApiService).Assembly);
 
