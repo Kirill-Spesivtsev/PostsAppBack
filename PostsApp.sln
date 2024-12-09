@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsApp.Domain", "PostsApp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostsApp.Infrastructure", "PostsApp.Infrastructure\PostsApp.Infrastructure.csproj", "{AB5306D5-0174-4AC9-82AA-894512FAF399}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostsApp.Tests", "PostsApp.Tests\PostsApp.Tests.csproj", "{B6AC2442-4E0B-4000-A634-8B7D6DDEF4C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AB5306D5-0174-4AC9-82AA-894512FAF399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB5306D5-0174-4AC9-82AA-894512FAF399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB5306D5-0174-4AC9-82AA-894512FAF399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6AC2442-4E0B-4000-A634-8B7D6DDEF4C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6AC2442-4E0B-4000-A634-8B7D6DDEF4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6AC2442-4E0B-4000-A634-8B7D6DDEF4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6AC2442-4E0B-4000-A634-8B7D6DDEF4C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
