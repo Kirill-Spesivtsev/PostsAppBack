@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Mvc;
-using PostsApp.Domain.Extensions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Net.Mime;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using PostsApp.Application;
 using PostsApp.Domain.Entities;
+using System.Net.Mime;
 
 
 namespace PostsApp.API.Controllers
@@ -14,9 +12,8 @@ namespace PostsApp.API.Controllers
 	/// </summary>
 	[ApiController]
 	[Route("api/posts")]
-	public class PostsController(IMediator mediator, ILogger<PostsController> logger) : ControllerBase
+	public class PostsController(IMediator mediator) : ControllerBase
 	{
-		private readonly ILogger<PostsController> _logger = logger;
 		private readonly IMediator _mediator = mediator;
 
 		/// <summary>

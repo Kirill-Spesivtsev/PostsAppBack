@@ -23,7 +23,7 @@ public class PostValidator : AbstractValidator<AddNewPostCommand>
 		RuleFor(post => post.ArticleLink)
 			.Must(BeAValidUrl)
 			.When(post => !string.IsNullOrEmpty(post.ArticleLink))
-			.WithMessage("Article link should be a valid URL or null.");
+			.WithMessage("Article link should be a valid URL or empty.");
 
 		RuleFor(post => post.Content)
 			.NotEmpty()
@@ -34,7 +34,7 @@ public class PostValidator : AbstractValidator<AddNewPostCommand>
 		RuleFor(post => post.MediaUrl)
 			.Must(BeAValidUrl)
 			.When(post => !string.IsNullOrEmpty(post.MediaUrl))
-			.WithMessage("MediaUrl should be a valid URL or null.");
+			.WithMessage("MediaUrl should be a valid URL or empty.");
 	}
 
 	private bool BeAValidUrl(string? url)

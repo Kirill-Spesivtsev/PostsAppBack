@@ -15,6 +15,12 @@ public static class ApplicationConfiguration
 	/// </summary>
 	public static IServiceCollection AddApplicationServices(this IServiceCollection services, WebApplicationBuilder builder)
 	{
+		var allowedOrigins = builder.Configuration.GetSection("AllowedOrigins").Get<string[]>();
+		services.AddCors(options => 
+		{ 
+			options.AddPolicy("DefaultCorsPolicy", builder => builder.WithOrigins(allowedOrigins!).AllowAnyHeader().AllowAnyMethod()); 
+		}); 
+
 		builder.Services.AddProblemDetails();
 
 		services.AddMediatR(configuration =>
@@ -29,7 +35,7 @@ public static class ApplicationConfiguration
 
 		builder.Services.AddMemoryCache(options =>
 		{
-			options.SizeLimit = 300;
+			options.SizeLimit = 500;
 		});
 
 		services.AddAutoMapper(typeof(ExternalApiService).Assembly);

@@ -8,7 +8,7 @@ using PostsApp.Domain.Entities;
 /// <summary>
 /// Mediatr query handler to get all posts.
 /// </summary>
-internal class GetAllPostsQueryHandler : IRequestHandler<GetAllPostsQuery, List<Post>>
+public class GetAllPostsQueryHandler : IRequestHandler<GetAllPostsQuery, List<Post>>
 {
 	private readonly IPostRepository _postRepository;
 	private readonly IMemoryCache _cache;
@@ -31,7 +31,7 @@ internal class GetAllPostsQueryHandler : IRequestHandler<GetAllPostsQuery, List<
 	{
 		var entryKey = "Posts_All";
 
-		var cahePosts = await _cache.GetOrCreateAsync(entryKey, async entry => 
+		var cachePosts = await _cache.GetOrCreateAsync(entryKey, async entry => 
 		{
 			entry.SetSize(50);
 			entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(60));
@@ -52,6 +52,6 @@ internal class GetAllPostsQueryHandler : IRequestHandler<GetAllPostsQuery, List<
 			return posts;
 		});
 
-		return cahePosts ?? [];
+		return cachePosts ?? [];
 	}
 }

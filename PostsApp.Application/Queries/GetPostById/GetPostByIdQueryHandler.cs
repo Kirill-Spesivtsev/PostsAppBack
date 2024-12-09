@@ -10,7 +10,7 @@ using System.Text.Json;
 /// <summary>
 /// Mediatr query handler to get post by provided ID.
 /// </summary>
-internal class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, Post>
+public class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, Post>
 {
 	private readonly IPostRepository _postRepository;
 	private readonly IMemoryCache _cache;
@@ -27,7 +27,7 @@ internal class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, Post>
 	{
 		var key = $"Post_{request.Id}";
 
-		var cahePost = await _cache.GetOrCreateAsync(key, async entry =>
+		var cachePost = await _cache.GetOrCreateAsync(key, async entry =>
 		{
 			entry.SetSize(1);
 			entry.SetAbsoluteExpiration(TimeSpan.FromMinutes(60));
@@ -43,6 +43,6 @@ internal class GetPostByIdQueryHandler : IRequestHandler<GetPostByIdQuery, Post>
 			return post;
 		});
 		
-		return cahePost!;
+		return cachePost!;
 	}
 }
